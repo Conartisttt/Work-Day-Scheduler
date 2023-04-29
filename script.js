@@ -2,15 +2,16 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-
 $(function () { //this is a call to jQuery to ensure that the code isn't run until the browser has finished rendering all elements in the html.
  
   const saveButton = document.querySelectorAll("button"); //this stores all save buttons into an element (add query selector to this)
-  
   let today = dayjs(); //this will return todays date
-    
   let currentHour = today.format('h'); //this will return the current hour number
   console.log(currentHour);
+
+  eachHour = $(".time-block");
+  console.log(eachHour);
+
 
   //Add event listener to each save button on page and call eventHandler
   for (let i = 0; i < saveButton.length; i++) {
@@ -23,12 +24,16 @@ $(function () { //this is a call to jQuery to ensure that the code isn't run unt
     identiferID = identifier.slice(5, 7); // this will return the hour # based on the id that was clicked...not very helpful here but I did a thing
     console.log(identiferID);
 
-  }
+    let textArea = $(this).prev(); //This will return the <textarea> of the save button that was clicked...but not its value.
+    console.log(textArea);
 
+  }
 
   console.log(saveButton);
 
 
+let hour8 = $("#hour-8").children().eq(1);
+console.log(hour8); //this traverses into the text area for hour 8.. experiment..idk
 
 
 
@@ -60,10 +65,10 @@ $(function () { //this is a call to jQuery to ensure that the code isn't run unt
   //
 
 
-  // code to display the current date in the header of the page - upates every second.
+  // code to display the current date in the header of the page - upates every 100 miliseconds.
   //TODO: fix it not displaying right away.
   setInterval(function () {
     $('#currentDay').text("Today's Date is " + today.format('MMM D, YYYY'));
-  }, 1000);
+  }, 100);
 
 });
