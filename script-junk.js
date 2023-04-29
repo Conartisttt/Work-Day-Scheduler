@@ -16,3 +16,19 @@ if (currentHour == identifierID) {
   }
   }
 };
+
+
+//all crap
+
+    // let savedData = {
+    //   textLocation : identifier,
+    //   textInput : 
+    // }
+    
+
+  textBox = document.getElementsByTagName("textarea");
+  console.log(textBox);
+
+  for(i=0; i<textBox.length; i++) {
+    console.log(textBox.text[i]);
+  }
