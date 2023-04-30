@@ -4,7 +4,7 @@
 
 The purpose of this application is to allow employees to save events for each hour of the day using a simple calendar interface so that they can manage their time effectively. In this project, starter code was provided, and I have updated this starter code to meet the criteria in the features section.
 
-* **The final result can be found here:** [Work Day Scheduler](insert link to finished project here)
+* **The final result can be found here:** [Work Day Scheduler](https://conartisttt.github.io/Work-Day-Scheduler/)
 
 ## Features
 
