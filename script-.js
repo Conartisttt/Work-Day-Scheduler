@@ -6,6 +6,7 @@ $(function () {
   console.log(today);
 
   setColors();
+  setCurrentDate();
 
 
 
@@ -47,7 +48,20 @@ $(function () {
     }
   }
 
+  function setCurrentDate(){
+    const currentDate = dayjs().format("dddd, MMMM D, YYYY");
+    console.log(currentDate);
+    $("#currentDay").text(currentDate);
+    
+  }
 
+setInterval(setItems, 60000);
+
+function setItems(){
+  setColors();
+  setCurrentDate();
+
+}
 
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
