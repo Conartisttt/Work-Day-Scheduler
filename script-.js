@@ -7,7 +7,44 @@ $(function () {
 
   setColors();
   setCurrentDate();
+  getData();
 
+  const saveButtons = $("button"); 
+  console.log(saveButtons);
+
+  for (let i = 0; i < saveButtons.length; i++) {
+    saveButtons[i].addEventListener("click", eventHandler);
+  }
+
+  function eventHandler(e) {
+    $(this);
+    console.log(this);
+    const textArea = $(this).prev();
+    console.log(textArea);
+    const textAreaVal = textArea.val();
+    console.log(textAreaVal);
+    const parentElID = $(this).parent().attr('id');
+    console.log(parentElID);
+
+    const textAreaObj = {
+      textAreaKey: textAreaVal
+    };
+    localStorage.setItem(parentElID, JSON.stringify(textAreaObj));
+  }
+
+  function getData() {
+    const textAreas = $("textarea"); 
+    console.log(textAreas);
+    for (let i = 0; i < textAreas.length; i++) {
+      console.log(textAreas[i]);
+      const parentID = textAreas[i].parentElement.id;
+      console.log(parentID);
+      const textAreaData = JSON.parse(localStorage.getItem(parentID));
+      if (textAreaData) {
+        textAreas[i].value = textAreaData.textAreaKey;
+      };
+    };
+  }
 
 
   // TODO: Add a listener for click events on the save button. This code should
@@ -26,15 +63,15 @@ $(function () {
   function setColors() {
     const currentHour = dayjs().hour()
     console.log(currentHour);
-    const hourDivs = document.getElementsByClassName("time-block");
+    const hourDivs = $(".time-block");
     console.log(hourDivs);
 
-    for(let i=0; i<hourDivs.length; i++) {
+    for (let i = 0; i < hourDivs.length; i++) {
       const hourDivsId = hourDivs[i].getAttribute('id');
       console.log(hourDivsId);
       const hourDivsHour = hourDivsId.slice(5, 7);
       console.log(hourDivsHour);
-      if(currentHour == hourDivsHour) {
+      if (currentHour == hourDivsHour) {
         hourDivs[i].classList.add("present");
         hourDivs[i].classList.remove("past", "future");
       } else if (currentHour > hourDivsHour) {
@@ -48,20 +85,20 @@ $(function () {
     }
   }
 
-  function setCurrentDate(){
+  function setCurrentDate() {
     const currentDate = dayjs().format("dddd, MMMM D, YYYY");
     console.log(currentDate);
     $("#currentDay").text(currentDate);
-    
+
   }
 
-setInterval(setItems, 60000);
+  setInterval(setItems, 60000);
 
-function setItems(){
-  setColors();
-  setCurrentDate();
-
-}
+  function setItems() {
+    setColors();
+    setCurrentDate();
+    getData();
+  }
 
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
