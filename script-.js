@@ -3,10 +3,12 @@ $(function () {
   const saveButtons = $("button");
   setItems();
 
+  //add event listener to all buttons
   for (let i = 0; i < saveButtons.length; i++) {
     saveButtons[i].addEventListener("click", eventHandler);
   }
 
+  //target which button was clicked and save content to local storage
   function eventHandler(e) {
     $(this);
     const textArea = $(this).prev();
@@ -20,6 +22,7 @@ $(function () {
     localStorage.setItem(parentElID, JSON.stringify(textAreaObj));
   }
 
+  //retrieve data from local storage and set to values to text areas
   function getData() {
     const textAreas = $("textarea");
     for (let i = 0; i < textAreas.length; i++) {
@@ -31,6 +34,7 @@ $(function () {
     };
   }
 
+  //set colors of divs based on current hour
   function setColors() {
     const currentHour = dayjs().hour();
     const hourDivs = $(".time-block");
@@ -53,11 +57,13 @@ $(function () {
     };
   }
 
+  //set current date at top of screen
   function setCurrentDate() {
     const currentDate = dayjs().format("dddd, MMMM D, YYYY");
-    $("#currentDay").text(currentDate);
+    $("#currentDay").text("Today's date is " + currentDate);
   }
 
+//call setItems function every minute to update colors of divs, current date at top of screen, and data in local storage
   setInterval(setItems, 60000);
 
   function setItems() {
