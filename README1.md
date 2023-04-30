@@ -32,4 +32,4 @@ The purpose of this application is to allow employees to save events for each ho
 ## Credits
 
 * Starter code provided by edX Boot Camps LLC
-* Code updated by Conner Martin, with assistance from tutor Sangeetha Kaliaperumal
+* Code updated by Conner Martin
