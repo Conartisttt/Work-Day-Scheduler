@@ -1,3 +1,37 @@
+//Dynmaically create HTML
+for (i = 8; i < 19; i++) {
+  const divContainer = document.getElementById("divcontainer")
+  console.log(divContainer);
+  const divBlock = document.createElement("div");
+  divBlock.setAttribute("id", "hour-" + i);
+  divBlock.classList.add("row", "time-block", "past");
+  divContainer.appendChild(divBlock);
+  const divHour = document.createElement("div");
+  divHour.classList.add("col-2", "col-md-1", "hour", "text-center", "py-3");
+  let time = i;
+  let ampm = "AM";
+  if (time > 12) {
+    time = time - 12;
+    ampm = "PM";
+  } if (time == 12) {
+    ampm = "PM";
+  }
+  divHour.innerHTML = time + ampm;
+  divBlock.appendChild(divHour);
+  const tArea = document.createElement("textarea");
+  tArea.classList.add("col-8", "col-md-10", "description");
+  tArea.setAttribute("rows", "3");
+  divBlock.appendChild(tArea);
+  const saveButton = document.createElement("button");
+  saveButton.classList.add("btn", "saveBtn", "col-2", "col-md-1");
+  saveButton.setAttribute("aria-label", "save");
+  divBlock.appendChild(saveButton);
+  const iArea = document.createElement("i");
+  iArea.classList.add("fas", "fa-save");
+  iArea.setAttribute("aria-hidden", "true");
+  saveButton.appendChild(iArea);
+}
+
 $(function () {
   const today = dayjs();
   const saveButtons = $("button");
@@ -24,12 +58,18 @@ $(function () {
 
   //retrieve data from local storage and set to values to text areas
   function getData() {
-    const textAreas = $("textarea");
-    for (let i = 0; i < textAreas.length; i++) {
-      const parentID = textAreas[i].parentElement.id;
-      const textAreaData = JSON.parse(localStorage.getItem(parentID));
-      if (textAreaData) {
-        textAreas[i].value = textAreaData.textAreaKey;
+    const cDiv = $(".time-block");
+    const ctArea = cDiv.find("textarea");
+
+    for(let i=0; i<ctArea.length; i++){
+      const cDivId = cDiv[i].id;
+      console.log(cDivId);
+      ctAreaValue = JSON.parse(localStorage.getItem(cDivId));
+      console.log(ctAreaValue);
+
+
+      if(ctAreaValue){
+        ctArea[i].value = ctAreaValue.textAreaKey;
       };
     };
   }
@@ -63,7 +103,7 @@ $(function () {
     $("#currentDay").text("Today's date is " + currentDate);
   }
 
-//call setItems function every minute to update colors of divs, current date at top of screen, and data in local storage
+  //call setItems function every minute to update colors of divs, current date at top of screen, and data in local storage
   setInterval(setItems, 60000);
 
   function setItems() {

@@ -16,9 +16,9 @@ The purpose of this application is to allow employees to save events for each ho
 * When the page is refreshed, the events persist
 * Uses a date utility library to work with date and time
 
-* **The following image shows a demonstration of the web applications appearance and functionality:**
+* **The following image shows a demonstration of my web applications appearance and functionality:**
 
-![applicaiton demo.](./Assets/05-third-party-apis-homework-demo.gif)
+![applicaiton demo.](./Assets/ScreenshotOfApp.png)
 
 
 ## Technologies Used
